@@ -10,16 +10,6 @@ module.exports = function(grunt) {
         '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %> (<%= pkg.author.url %>)\n' +
         '* Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %>\n*/\n'
     },
-    imagemin: {
-      build: {
-        files: [{
-          expand: true,
-          cwd: 'public/img',
-          src: '{,*/}*.{png,gif,jpg,jpeg}',
-          dest: 'public/img'
-        }]
-      }
-    },
     sass: {
       dist: {
         files: {
@@ -82,7 +72,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-concat');
