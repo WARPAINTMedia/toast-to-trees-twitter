@@ -1,5 +1,4 @@
 var content = document.querySelector('.content');
-var socket = io('http://localhost:8000');
 
 function loadedImage(url, callback) {
   // create a new image
@@ -16,6 +15,7 @@ function loadedImage(url, callback) {
 }
 
 function handleTweet(tweet) {
+  tweet = JSON.parse(tweet);
   var profile = (tweet.user.profile_image_url_https).replace('_normal', '');
   var newElem = document.createElement('div');
   // <img src=\""+profile+"\" height=\"200\" width=\"200\" title=\""+tweet.user.screen_name+"\">
@@ -37,6 +37,15 @@ function handleTweet(tweet) {
   });
 }
 
+var socket = new eio.Socket('ws://localhost:3000');
+
 document.addEventListener('DOMContentLoaded', function() {
-  socket.on('tweet', handleTweet);
+  socket.on('open', function() {
+    console.log('open');
+    // socket.on('tweet', handleTweet);
+    socket.on('message', handleTweet);
+    socket.on('close', function() {
+      console.log('disconnect');
+    });
+  });
 });
