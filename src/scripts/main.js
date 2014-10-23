@@ -15,12 +15,15 @@ function loadedImage(url, callback) {
 }
 
 function handleTweet(tweet) {
+  // parse that string
   tweet = JSON.parse(tweet);
+  // dont serve the tiny profile pics
   var profile = (tweet.user.profile_image_url_https).replace('_normal', '');
   var newElem = document.createElement('div');
   // <img src=\""+profile+"\" height=\"200\" width=\"200\" title=\""+tweet.user.screen_name+"\">
   var template = "<div class=\"tweet-image\" ><a href=\"https://twitter.com/"+tweet.user.screen_name+"\" title=\""+tweet.user.screen_name+"\"></a><a href=\"https://twitter.com/@"+tweet.user.screen_name+"\" class=\"tweet-user\">@"+tweet.user.screen_name+"</a></div><div class=\"tweet-text\"><p>"+tweet.tweet+"</p></div>";
   newElem.className = 'tweet';
+  // if there are image attachments
   if (typeof(tweet.entities.media) === 'object') {
     Array.prototype.slice.call(tweet.entities.media, 0).forEach(function(item){
       template += "<div class=\"tweet-media\"><img src=\""+item.media_url_https+"\" alt=\"\"></div>";
@@ -31,6 +34,7 @@ function handleTweet(tweet) {
   clearfix.className = "clearfix";
   content.insertBefore(clearfix, content.firstChild);
   content.insertBefore(newElem, content.firstChild);
+  // fadein the image when the profile pic has loaded
   loadedImage(profile, function(temp) {
     newElem.querySelector('.tweet-image a').appendChild(temp);
     newElem.classList.add('fadeIn');
