@@ -147,9 +147,10 @@ form {
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../img/tree-med.png), url(../img/footer-med.png), url(../img/forest-med.jpg);
+  background-image: url(../img/tree.png), url(../img/footer.png), url(../img/forest.jpg);
   background-repeat: no-repeat, repeat-x, no-repeat;
   background-position: left top, bottom, top;
+  background-size: auto, auto, cover;
   overflow-y: scroll;
 }
 
