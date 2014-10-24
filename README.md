@@ -8,7 +8,7 @@ toast to trees twitter app
 
 The Twitter application will not run without a `config.json` file that contains your application codes.
 
-* Create a new application on the twitter developer site
+* [Create a new application on the twitter developer site](https://apps.twitter.com/app/new)
 * Once create, go to the API Keys page, and click "Create my access token"
 * Create a new file in our project folder with nano config.json
 * Paste in the following code replacing the values with your tokens and secrets:
